@@ -38,7 +38,7 @@ def combine_images(image1_path, image2_path, output_path, target_size=(19630, 15
     new_image.paste(image2, (x2, y2))
 
     # Lưu ảnh kết quả với độ phân giải đã cho
-    new_image.save(output_path, int(dpi)
+    new_image.save(output_path, int(dpi))
 
 if __name__ == "__main__":
     folder_path = input("Nhập đường dẫn đến folder chứa ảnh: ")
