@@ -1,7 +1,7 @@
 import os
 import random
 from PIL import Image
-
+Image.MAX_IMAGE_PIXELS = 1000000000
 def rotate_image(image_path, angle=90):
     """Xoay ảnh theo góc cho trước.
 
