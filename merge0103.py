@@ -13,12 +13,12 @@ def rotate_and_combine_images(image1_path, image2_path, output_path):
     image2 = Image.open(image2_path).rotate(90)
 
     # Tính toán kích thước ảnh kết quả (bạn có thể tùy chỉnh)
-    width = image1.width + image2.width 
-    height = max(image1.height, image2.height)
+    width = 19630 
+    height = 15529
 
     new_image = Image.new('RGBA', (width, height),(0,0,0,0))
-    new_image.paste(image1, (0, 0))
-    new_image.paste(image2, (image1.width, 0))
+    new_image.paste(image1, (276, 1060))
+    new_image.paste(image2, (9928, 1060))
     new_image.save(output_path, dpi=(300, 300))
 
 if __name__ == "__main__":
