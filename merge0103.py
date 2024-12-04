@@ -53,8 +53,8 @@ if __name__ == "__main__":
         image1, image2 = random.sample(image_files, 2)
 
         # Tạo đường dẫn đầy đủ đến 2 ảnh
-        image1_path = os.path.hjoin(folder_path, image1)
-        image2_path = os.path.hjoin(folder_path, image2)
+        image1_path = os.path.join(folder_path, image1)
+        image2_path = os.path.join(folder_path, image2)
 
         # Tạo tên file kết quả
         output_file = f"{image1[:-4]}_{image2[:-4]}.png"  # Loại bỏ phần mở rộng cũ và thêm .png
