@@ -30,8 +30,8 @@ def combine_images(image1_path, image2_path, output_path, target_size=(19630, 15
     new_image = Image.new('RGB', target_size)
 
     # Tính toán vị trí đặt ảnh vào ảnh mới (giả sử đặt hai ảnh cạnh nhau)
-    x1, y1 = 0, 0
-    x2, y2 = image1.width, 0
+    x1, y1 = 276, 1060
+    x2, y2 = 9928, 1060
 
     # Ghép ảnh vào ảnh mới
     new_image.paste(image1, (x1, y1))
