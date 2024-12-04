@@ -42,3 +42,24 @@ def combine_images(image1_path, image2_path, output_path, target_size=(19630, 15
 
 if __name__ == "__main__":
     folder_path = input("Nhập đường dẫn đến folder chứa ảnh: ")
+# Lấy danh sách các file ảnh trong folder
+    image_files = [f for f in os.listdir(folder_path) if f.endswith(('.jpg', '.jpeg', '.png'))]
+
+    # Kiểm tra xem có ít nhất 2 ảnh trong folder hay không
+    if len(image_files) < 2:
+        print("Folder không chứa đủ 2 ảnh để ghép!")
+    else:
+        # Chọn ngẫu nhiên 2 ảnh
+        image1, image2 = random.sample(image_files, 2)
+
+        # Tạo đường dẫn đầy đủ đến 2 ảnh
+        image1_path = os.path.hjoin(folder_path, image1)
+        image2_path = os.path.hjoin(folder_path, image2)
+
+        # Tạo tên file kết quả
+        output_file = f"{image1[:-4]}_{image2[:-4]}.png"  # Loại bỏ phần mở rộng cũ và thêm .png
+        output_path = os.path.join(folder_path, output_file)
+
+        # Ghép 2 ảnh và lưu kết quả
+        combine_images(image1_path, image2_path, output_path)
+        print(f"Đã ghép 2 ảnh thành công. Hình ảnh kết quả: {output_path}")
