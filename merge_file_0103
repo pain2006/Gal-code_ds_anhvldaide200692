@@ -2,32 +2,43 @@ import os
 import random
 from PIL import Image
 
-def combine_images(image1_path, image2_path, output_path):
-    """
-    Kết hợp hai hình ảnh thành một.
+def rotate_image(image_path, angle=90):
+    """Xoay ảnh theo góc cho trước.
 
     Args:
-        image1_path: Đường dẫn đến hình ảnh thứ nhất.
-        image2_path: Đường dẫn đến hình ảnh thứ hai.
-        output_path: Đường dẫn để lưu hình ảnh kết quả.
+        image_path: Đường dẫn đến ảnh.
+        angle: Góc xoay (mặc định là 90 độ).
     """
+    image = Image.open(image_path)
+    rotated_image = image.rotate(angle)
+    return rotated_image
 
-    # Mở hai hình ảnh
-    image1 = Image.open(image1_path)
-    image2 = Image.open(image2_path)
+def combine_images(image1_path, image2_path, output_path):
+    """Ghép hai ảnh đã xoay thành một.
 
-    # Tạo một hình ảnh mới có kích thước phù hợp
-    new_image = Image.new('RGB', (image1.width + image2.width, max(image1.height, image2.height)))
+    Args:
+        image1_path: Đường dẫn đến ảnh thứ nhất.
+        image2_path: Đường dẫn đến ảnh thứ hai.
+        output_path: Đường dẫn để lưu ảnh kết quả.
+    """
+    image1 = rotate_image(image1_path)
+    image2 = rotate_image(image2_path)
 
-    # Dán hai hình ảnh vào hình ảnh mới
+    # Tính toán kích thước ảnh kết quả
+    width = image1.width + image2.width
+    height = max(image1.height, image2.height)
+
+    # Tạo ảnh mới
+    new_image = Image.new('RGB', (width, height))
+
+    # Ghép ảnh vào ảnh mới
     new_image.paste(image1, (0, 0))
     new_image.paste(image2, (image1.width, 0))
 
-    # Lưu hình ảnh kết quả
+    # Lưu ảnh kết quả
     new_image.save(output_path)
 
 if __name__ == "__main__":
-    # Nhập đường dẫn đến folder chứa ảnh
     folder_path = input("Nhập đường dẫn đến folder chứa ảnh: ")
 
     # Lấy danh sách các file ảnh trong folder
@@ -41,8 +52,8 @@ if __name__ == "__main__":
         image1, image2 = random.sample(image_files, 2)
 
         # Tạo đường dẫn đầy đủ đến 2 ảnh
-        image1_path = os.path.join(folder_path, image1)
-        image2_path = os.path.join(folder_path, image2)
+        image1_path = os.path.hjoin(folder_path, image1)
+        image2_path = os.path.hjoin(folder_path, image2)
 
         # Tạo tên file kết quả
         output_file = f"{image1[:-4]}_{image2[:-4]}.png"  # Loại bỏ phần mở rộng cũ và thêm .png
