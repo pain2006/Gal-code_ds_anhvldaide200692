@@ -27,7 +27,7 @@ def combine_images(image1_path, image2_path, output_path, target_size=(19630, 15
     image2 = rotate_image(image2_path)
 
     # Tạo ảnh mới với kích thước và độ phân giải mong muốn
-    new_image = Image.new('RGB', target_size)
+    new_image = Image.new('RGB', target_size, 300)
 
     # Tính toán vị trí đặt ảnh vào ảnh mới (giả sử đặt hai ảnh cạnh nhau)
     x1, y1 = 276, 1060
@@ -38,7 +38,7 @@ def combine_images(image1_path, image2_path, output_path, target_size=(19630, 15
     new_image.paste(image2, (x2, y2))
 
     # Lưu ảnh kết quả với độ phân giải đã cho
-    new_image.save(output_path, dpi=int(dpi))
+    new_image.save(output_path)
 
 if __name__ == "__main__":
     folder_path = input("Nhập đường dẫn đến folder chứa ảnh: ")
